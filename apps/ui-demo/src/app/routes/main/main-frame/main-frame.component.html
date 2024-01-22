@@ -1,8 +1,14 @@
-<div class="entire-page">
-  <div class="sider">
-    <p class="bg-red-500">sider</p>
+<div class="entire-page size-full flex border-red-500 border">
+  <div class="sider border-orange-500 border basis-64 flex flex-col">
+    <div class="basis-8 grow-0">
+      <p>this is title</p>
+    </div>
+    <div class="menu-area basis-96 grow">
+      <app-menu [rhData]="menuData"> </app-menu>
+    </div>
+    <div class="basis-8 grow-0">this is operate icon</div>
   </div>
-  <div class="content">
+  <div class="content border-green-500 border size-full">
     <router-outlet></router-outlet>
   </div>
 </div>
