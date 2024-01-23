@@ -18,3 +18,9 @@ export interface ProductionTodoListDto {
   degree?: number;
   data: number;
 }
+
+export interface ProductionStatusDto {
+  content: string;
+  date: string;
+  status: string;
+}

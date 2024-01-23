@@ -1,8 +1,8 @@
 <div class="product flex size-full">
   <div class="content basis-full">
-    <div class="product-board flex">
+    <div class="product-board sm:flex">
       <app-card
-        class="basis-1/4 justify-between m-2 bg-white rounded-lg"
+        class="basis-1/4 sm:basis-1/2 md:basis-1/3 justify-between m-2 pt-4 bg-white rounded-lg"
         *ngFor="let board of borderData"
         [rhTitle]="boardTitle"
       >
@@ -26,19 +26,19 @@
             </div>
             <div class="basis-auto ml-2">
               <div class="text-xl font-bold">{{ board.title }}</div>
-              <div>
-                <span>{{ board.subtitle }}</span>
+              <div class="text-sm text-gray-400">
+                <span>{{ board.subtitle + ' ' }}</span>
                 <span class="text-green-400">+{{ board.subData * 100 }}%</span>
               </div>
             </div>
           </div>
         </ng-template>
-        <span class="text-2xl font-bold pb-8 ml-4"> {{ board.data }}</span>
+        <div class="text-2xl font-bold py-4 ml-4">{{ board.data }}</div>
       </app-card>
     </div>
     <div class="todo-list w-full">
       <app-card
-        class="block m-2 bg-white rounded-lg"
+        class="block my-2 bg-white rounded-lg"
         [rhTitle]="toListCardTitle"
       >
         <ng-template #toListCardTitle>
@@ -84,21 +84,61 @@
         <app-card
           class="block bg-white rounded-lg m-2"
           [rhTitle]="timelineCardTitle"
+          [rhExtra]="timelineCardExtra"
         >
           <ng-template #timelineCardTitle>
             <span>生产情况</span>
+            &nbsp;&nbsp;
+            <span class="text-xs italic text-gray-400 font-normal"
+              >更新时间：2023-10-30 18:00:12</span
+            >
           </ng-template>
+          <ng-template #timelineCardExtra>
+            <div class="mr-4 pt-2">
+              <nz-select nzSize="small" ngModel="today">
+                <nz-option nzValue="today" nzLabel="今日"></nz-option>
+              </nz-select>
+            </div>
+          </ng-template>
+          <div class="m-4">
+            <nz-timeline>
+              <nz-timeline-item
+                *ngFor="let item of productionStatusDatas"
+                nzColor="gray"
+              >
+                <div class="flex justify-between text-sm text-gray-400">
+                  <div class="basis-auto">
+                    <div>{{ item.content }}</div>
+                    <div>{{ item.date }}</div>
+                  </div>
+                  <div class="basis-12">{{ item.status }}</div>
+                </div>
+              </nz-timeline-item>
+            </nz-timeline>
+          </div>
         </app-card>
       </div>
       <div class="qualification-rate w-1/2 min-h-60">
         <app-card
           class="block bg-white rounded-lg m-2"
           rhTitle="生产合格比例"
-        ></app-card>
+          [rhExtra]="rateCardExtra"
+        >
+          <div>
+            <div echarts [options]="options" class="demo-chart"></div>
+          </div>
+          <ng-template #rateCardExtra>
+            <div class="mr-4 pt-2">
+              <nz-select nzSize="small" ngModel="today">
+                <nz-option nzValue="today" nzLabel="今日"></nz-option>
+              </nz-select>
+            </div>
+          </ng-template>
+        </app-card>
       </div>
     </div>
   </div>
-  <div class="sider basis-80">
+  <div class="sider basis-96">
     <div class="shortcut min-h-60">
       <app-card class="block bg-white rounded-lg m-2" rhTitle="快捷方法">
         <div class="flex flex-wrap">
@@ -126,17 +166,44 @@
       </app-card>
     </div>
     <div class="product-pending min-h-60">
-      <app-card
-        class="block bg-white rounded-lg m-2"
-        rhTitle="待生产"
-      ></app-card>
+      <ng-container *ngFor="let detailData of productionDetailDatas">
+        <app-card
+          class="block bg-white rounded-lg m-2"
+          [rhTitle]="pendingCardTitle"
+        >
+          <div class="ml-2 pr-1">
+            <div
+              class="flex justify-between my-1"
+              *ngFor="let data of detailData.Datas"
+            >
+              <div class="p-1 text-base text-gray-500">{{ data.content }}</div>
+              <div
+                class="py-1 px-2 text-blue-500 border rounded border-blue-300 bg-blue-50"
+              >
+                {{ data.status }}
+              </div>
+            </div>
+          </div>
+        </app-card>
+        <ng-template #pendingCardTitle>
+          <div class="text-lg font-bold ml-2">
+            {{ detailData.Category }}({{ detailData.Datas.length }})
+          </div>
+        </ng-template>
+      </ng-container>
     </div>
     <div class="kpi min-h-60">
       <app-card class="block bg-white rounded-lg m-2" rhTitle="绩效指标">
         <div class="flex flex-wrap">
-          <div [class]="kpiDivClass[kpi.color]" *ngFor="let kpi of kpiDatas">
-            <div [class]="kpiDataClass[kpi.color]">{{ kpi.data }}</div>
-            <div class="text-sm">{{ kpi.title }}</div>
+          <div
+            class="kpi-item m-2 p-1"
+            [class]="kpiDivClass[kpi.color]"
+            *ngFor="let kpi of kpiDatas"
+          >
+            <div [class]="kpiDataClass[kpi.color]">
+              {{ kpi.data }}{{ kpi.isPercent ? '%' : '' }}
+            </div>
+            <div class="text-xs text-gray-400 mt-1">{{ kpi.title }}</div>
           </div>
         </div>
       </app-card>

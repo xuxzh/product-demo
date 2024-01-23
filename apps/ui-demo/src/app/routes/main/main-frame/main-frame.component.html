@@ -25,7 +25,99 @@
       ></span>
     </div>
   </div>
-  <div class="content size-full">
-    <router-outlet></router-outlet>
+  <div class="content size-full px-4 py-2">
+    <div class="flex flex-col">
+      <div class="basis-8 flex justify-between">
+        <div class="inline-flex items-center">
+          <nz-breadcrumb>
+            <nz-breadcrumb-item>
+              <i
+                style="font-size: 16px"
+                nz-icon
+                nzType="home"
+                nzTheme="outline"
+              ></i>
+            </nz-breadcrumb-item>
+            <nz-breadcrumb-item *ngIf="currentMenu?.MenuName">
+              <span class="inline-flex items-center">
+                <i
+                  style="font-size: 16px; font-weight: bold"
+                  nz-icon
+                  nzType="tool"
+                  nzTheme="outline"
+                ></i>
+                <span class="text-base font-bold">
+                  {{ currentMenu?.MenuName }}
+                </span>
+              </span>
+            </nz-breadcrumb-item>
+          </nz-breadcrumb>
+        </div>
+        <div class="flex">
+          <div
+            class="inline-flex items-center"
+            nz-dropdown
+            [nzDropdownMenu]="menuOne"
+            nzTrigger="click"
+          >
+            <div class="inline-flex items-center">
+              <i nz-icon nzType="home" nzTheme="fill"></i>
+              <span class="pl-1"> 销售工作台 </span>
+              <span nz-icon nzType="down"></span>
+            </div>
+            <nz-dropdown-menu #menuOne="nzDropdownMenu">
+              <ul nz-menu nzSelectable>
+                <li nz-menu-item>销售平台</li>
+                <li nz-menu-item>供应商平台</li>
+              </ul>
+            </nz-dropdown-menu>
+          </div>
+          <div
+            class="ml-4 inline-flex items-center"
+            nz-dropdown
+            [nzDropdownMenu]="menuTwo"
+            nzTrigger="click"
+          >
+            <div class="inline-flex items-center">
+              <nz-avatar
+                style="background-color: #1890ff"
+                nzText="a"
+              ></nz-avatar>
+              <span class="font-bold ml-1"> admin </span>
+              <span nz-icon nzType="down"></span>
+            </div>
+            <nz-dropdown-menu #menuTwo="nzDropdownMenu">
+              <ul nz-menu nzSelectable>
+                <li nz-menu-item>个人信息</li>
+                <li nz-menu-item>退出系统</li>
+              </ul>
+            </nz-dropdown-menu>
+          </div>
+        </div>
+      </div>
+      <div class="basis-6 flex justify-between mt-5">
+        <ng-container *ngIf="currentMenu?.MenuName">
+          <div class="px-3 border-b-2 border-blue-700 flex items-center py-1">
+            <span class="text-blue-700 cursor-pointer text-sm">{{
+              currentMenu?.MenuName
+            }}</span>
+            &nbsp;
+            <span
+              style="color: #1446e0"
+              nz-icon
+              nzType="close-circle"
+              nzTheme="fill"
+            ></span>
+          </div>
+          <div class="flex items-center">
+            <span nz-icon nzType="reload" nzTheme="outline"></span>
+            <span class="ml-1">刷新</span>
+          </div>
+        </ng-container>
+      </div>
+      <div class="basis-auto">
+        <router-outlet></router-outlet>
+      </div>
+    </div>
   </div>
 </div>

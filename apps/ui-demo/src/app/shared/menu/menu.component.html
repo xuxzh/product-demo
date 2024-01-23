@@ -1,8 +1,9 @@
 <div class="size-full">
   <div
-    class="h-10 m-2 p-1 text-black rounded flex align-middle flex-row menu-item text-sm"
+    class="menu-item h-10 m-2 p-1 text-black rounded flex align-middle flex-row text-sm hover:bg-blue-300 hover:text-white cursor-pointer"
     *ngFor="let menu of rhData"
     (click)="clickMenu(menu)"
+    [class.active]="menu.active"
   >
     <span
       class="text-xl pt-1"

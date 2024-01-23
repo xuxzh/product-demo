@@ -11,6 +11,9 @@ export class MenuComponent {
   @Output() rhMenuClickChange = new EventEmitter<MenuDto>();
 
   clickMenu(menu: MenuDto) {
+    if (!menu.active) {
+      this.rhData.forEach((ele) => (ele.active = ele === menu));
+    }
     this.rhMenuClickChange.emit(menu);
   }
 }
