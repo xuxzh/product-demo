@@ -11,7 +11,8 @@
     "paths": {
       "@model": ["apps/ui-demo/src/app/model/index"],
       "@data": ["apps/ui-demo/src/app/data/index"],
-      "@shared": ["apps/ui-demo/src/app/shared/index"]
+      "@shared": ["apps/ui-demo/src/app/shared/index"],
+      "@pages": ["apps/ui-demo/src/app/pages/index"]
     }
   },
   "files": [],

@@ -1,0 +1,145 @@
+<div class="product flex size-full">
+  <div class="content basis-full">
+    <div class="product-board flex">
+      <app-card
+        class="basis-1/4 justify-between m-2 bg-white rounded-lg"
+        *ngFor="let board of borderData"
+        [rhTitle]="boardTitle"
+      >
+        <ng-template #boardTitle>
+          <div class="flex">
+            <div class="basis-10 h-10">
+              <ng-container *ngIf="board.preset; else iconFontTpl">
+                <img
+                  class="w-10 h-10"
+                  src="assets/icon/preset/{{ board.icon }}.svg"
+                />
+              </ng-container>
+              <ng-template #iconFontTpl>
+                <span [class]="borderClass[board.color]">
+                  <span
+                    class="
+                  text-5xl icon iconfont icon-{{ board.icon }}"
+                  ></span
+                ></span>
+              </ng-template>
+            </div>
+            <div class="basis-auto ml-2">
+              <div class="text-xl font-bold">{{ board.title }}</div>
+              <div>
+                <span>{{ board.subtitle }}</span>
+                <span class="text-green-400">+{{ board.subData * 100 }}%</span>
+              </div>
+            </div>
+          </div>
+        </ng-template>
+        <span class="text-2xl font-bold pb-8 ml-4"> {{ board.data }}</span>
+      </app-card>
+    </div>
+    <div class="todo-list w-full">
+      <app-card
+        class="block m-2 bg-white rounded-lg"
+        [rhTitle]="toListCardTitle"
+      >
+        <ng-template #toListCardTitle>
+          <span class="text-xl font-bold">待办事项 &nbsp;</span>
+          <span class="text-xl font-bold text-gray-400">(36)</span>
+        </ng-template>
+        <div class="flex flex-row flex-wrap">
+          <div
+            class="w-64 min-h-28 py-4 pl-4 pr-2"
+            *ngFor="let todo of todoListData"
+          >
+            <div [class]="todoClass[todo.bg]">
+              <ng-container *ngIf="todo.preset; else iconFontTpl">
+                <img
+                  class="w-8 h-8"
+                  src="assets/icon/preset/{{ todo.icon }}.svg"
+                />
+              </ng-container>
+              <ng-template #iconFontTpl>
+                <span>
+                  <span
+                    class="text-white text-3xl icon iconfont icon-{{
+                      todo.icon
+                    }}"
+                  ></span>
+                </span>
+              </ng-template>
+            </div>
+            <div class="font-bold">{{ todo.title }}</div>
+            <div>
+              <span>
+                有
+                <span class="text-blue-400 underline">{{ todo.data }}</span>
+                订单待处理
+              </span>
+            </div>
+          </div>
+        </div>
+      </app-card>
+    </div>
+    <div class="product-profile w-full flex">
+      <div class="product-timeline w-1/2 min-h-60">
+        <app-card
+          class="block bg-white rounded-lg m-2"
+          [rhTitle]="timelineCardTitle"
+        >
+          <ng-template #timelineCardTitle>
+            <span>生产情况</span>
+          </ng-template>
+        </app-card>
+      </div>
+      <div class="qualification-rate w-1/2 min-h-60">
+        <app-card
+          class="block bg-white rounded-lg m-2"
+          rhTitle="生产合格比例"
+        ></app-card>
+      </div>
+    </div>
+  </div>
+  <div class="sider basis-80">
+    <div class="shortcut min-h-60">
+      <app-card class="block bg-white rounded-lg m-2" rhTitle="快捷方法">
+        <div class="flex flex-wrap">
+          <div class="basis-1/3 text-center" *ngFor="let item of shortcutData">
+            <div [class]="shortcutClass[item.bg]">
+              <ng-container *ngIf="item.preset; else iconFontTpl">
+                <img
+                  class="w-8 h-8"
+                  src="assets/icon/preset/{{ item.icon }}.svg"
+                />
+              </ng-container>
+              <ng-template #iconFontTpl>
+                <span>
+                  <span
+                    class="text-3xl icon iconfont icon-{{
+                      item.icon
+                    }} text-white"
+                  ></span>
+                </span>
+              </ng-template>
+            </div>
+            <div>{{ item.title }}</div>
+          </div>
+        </div>
+      </app-card>
+    </div>
+    <div class="product-pending min-h-60">
+      <app-card
+        class="block bg-white rounded-lg m-2"
+        rhTitle="待生产"
+      ></app-card>
+    </div>
+    <div class="kpi min-h-60">
+      <app-card class="block bg-white rounded-lg m-2" rhTitle="绩效指标">
+        <div class="flex flex-wrap">
+          <div [class]="kpiDivClass[kpi.color]" *ngFor="let kpi of kpiDatas">
+            <div [class]="kpiDataClass[kpi.color]">{{ kpi.data }}</div>
+            <div class="text-sm">{{ kpi.title }}</div>
+          </div>
+        </div>
+      </app-card>
+    </div>
+  </div>
+</div>

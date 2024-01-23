@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { MenuDto } from '@model';
 import { MENU_DATAS } from '@data';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-main-frame',
@@ -9,4 +10,14 @@ import { MENU_DATAS } from '@data';
 })
 export class MainFrameComponent {
   menuData: MenuDto[] = MENU_DATAS || [];
+
+  logoPath = './assets/images/logo.png';
+
+  constructor(public router: Router) {
+    //
+  }
+
+  navigateToMenu(menu: MenuDto) {
+    this.router.navigate([menu.Url]);
+  }
 }

@@ -3,7 +3,8 @@
   "version": "0.0.0",
   "license": "MIT",
   "scripts": {
-    "start": "nx run ui-demo:serve"
+    "start": "nx run ui-demo:serve",
+    "build": "nx run ui-demo:build -c production --base-href /demo/"
   },
   "private": true,
   "devDependencies": {

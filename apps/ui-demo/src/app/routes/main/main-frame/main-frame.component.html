@@ -1,14 +1,31 @@
-<div class="entire-page size-full flex border-red-500 border">
-  <div class="sider border-orange-500 border basis-64 flex flex-col">
-    <div class="basis-8 grow-0">
-      <p>this is title</p>
+<div class="entire-page size-full flex">
+  <div class="sider basis-56 flex flex-col">
+    <div class="basis-8 grow-0 flex">
+      <div class="w-14 h-14 flex justify-center items-center">
+        <img class="w-12 h-12 rounded-full bg-white p-1" [src]="logoPath" />
+      </div>
+      <div>
+        <div class="text-2xl font-bold italic">RuiHui</div>
+        <div class="text-xs italic">瑞辉数字工厂</div>
+      </div>
     </div>
     <div class="menu-area basis-96 grow">
-      <app-menu [rhData]="menuData"> </app-menu>
+      <app-menu
+        [rhData]="menuData"
+        (rhMenuClickChange)="navigateToMenu($event)"
+      >
+      </app-menu>
     </div>
-    <div class="basis-8 grow-0">this is operate icon</div>
+    <div class="basis-8 grow-0 flex justify-end">
+      <span
+        class="mr-4 text-lg"
+        nz-icon
+        nzType="menu-fold"
+        nzTheme="outline"
+      ></span>
+    </div>
   </div>
-  <div class="content border-green-500 border size-full">
+  <div class="content size-full">
     <router-outlet></router-outlet>
   </div>
 </div>

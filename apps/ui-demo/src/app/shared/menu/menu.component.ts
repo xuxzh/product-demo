@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { MenuDto } from '@model';
 
 @Component({
@@ -8,4 +8,9 @@ import { MenuDto } from '@model';
 })
 export class MenuComponent {
   @Input() rhData: MenuDto[] = [];
+  @Output() rhMenuClickChange = new EventEmitter<MenuDto>();
+
+  clickMenu(menu: MenuDto) {
+    this.rhMenuClickChange.emit(menu);
+  }
 }

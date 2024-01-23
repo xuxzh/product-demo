@@ -12,7 +12,7 @@
         "{options.outputPath}"
       ],
       "options": {
-        "outputPath": "dist/apps/ui-demo",
+        "outputPath": "dist/apps/demo",
         "index": "apps/ui-demo/src/index.html",
         "main": "apps/ui-demo/src/main.ts",
         "polyfills": [
@@ -40,7 +40,7 @@
             {
               "type": "initial",
               "maximumWarning": "500kb",
-              "maximumError": "1mb"
+              "maximumError": "5mb"
             },
             {
               "type": "anyComponentStyle",
