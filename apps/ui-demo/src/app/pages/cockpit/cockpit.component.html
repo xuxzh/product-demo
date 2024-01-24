@@ -1,1 +1,12 @@
-<p>开发中</p>
+<div class="size-full flex flex-wrap">
+  <div
+    class="basis-80 bg-white m-3 rounded-lg cursor-pointer"
+    *ngFor="let board of boardDatas"
+    (click)="clickBoard(board)"
+  >
+    <div>
+      <img class="rounded-lg image-item" src="{{ board.imagePath }}" />
+    </div>
+    <div class="text-center py-2 text-lg">{{ board.name }}</div>
+  </div>
+</div>
