@@ -1,10 +1,10 @@
 <div class="entire-page size-full flex">
-  <div class="sider basis-56 flex flex-col">
+  <div class="sider basis-12 md:basis-56 flex flex-col">
     <div class="basis-8 grow-0 flex">
       <div class="w-14 h-14 flex justify-center items-center">
         <img class="w-12 h-12 rounded-full bg-white p-1" [src]="logoPath" />
       </div>
-      <div>
+      <div class="hidden md:block">
         <div class="text-2xl font-bold italic">RuiHui</div>
         <div class="text-xs italic">瑞辉数字工厂</div>
       </div>
@@ -55,7 +55,7 @@
         </div>
         <div class="flex">
           <div
-            class="inline-flex items-center"
+            class="items-center hidden md:inline-flex"
             nz-dropdown
             [nzDropdownMenu]="menuOne"
             nzTrigger="click"
@@ -83,7 +83,7 @@
                 style="background-color: #1890ff"
                 nzText="a"
               ></nz-avatar>
-              <span class="font-bold ml-1"> admin </span>
+              <span class="font-bold ml-1 hidden md:inline"> admin </span>
               <span nz-icon nzType="down"></span>
             </div>
             <nz-dropdown-menu #menuTwo="nzDropdownMenu">
